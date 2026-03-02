@@ -273,10 +273,12 @@ export default function StudyPage() {
                     {/* Header Section - Only show when not started or after results are in */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2 border-b border-border print:hidden">
                         <div className="space-y-4">
-                            <div className="flex items-center gap-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
-                                <span className="bg-indigo-500/10 px-2 py-1 rounded">Study Mode</span>
-                                <span className="text-muted-foreground/30">•</span>
-                                <span className="text-muted-foreground">History</span>
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
+                                    Study Mode
+                                </span>
+                                <span className="text-muted-foreground">•</span>
+                                <span className="text-sm font-medium">{subject?.name || "No subject selected"}</span>
                             </div>
                             <h1 className="text-4xl font-heading font-bold text-foreground tracking-tight">
                                 {isStarted ? "Study Session" : "Practice & Review"}
