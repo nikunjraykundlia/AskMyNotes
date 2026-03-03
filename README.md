@@ -9,14 +9,20 @@
 - **Subject-Scoped Context**  
   Organize your notes into dedicated Subjects (max 3 subjects). Upload your PDFs and TXT files directly to a subject, and the AI will only answer based on the material in that specific subject, completely avoiding hallucinations.
 
+- **Intelligent AI Chatbot**  
+  Ask direct questions about your notes or clarify concepts. The chatbot uses an advanced vector search mechanism to pull up exact answers.
+
 - **Evidence-Backed Answers**  
-  Every answer comes with confidence scores and exact citations pointing you to the page and snippet in your notes.
+  Every AI response comes with an explicit confidence score (High/Medium/Low) and exact citations pointing you to the supportive evidence and snippet from your notes.
 
 - **Interactive Study Mode**  
-  Auto-generate Multiple Choice (MCQ) and Short Answer questions straight from your study materials to test your knowledge. Validates answers and stores your study history for review.
+  Auto-generate multiple-choice questions (MCQs) and short-answer queries straight from your study materials to vigorously test your knowledge. Validates answers and stores your study history.
 
-- **Robust Authentication & Secuity**  
-  Secure access crafted for a seamless user experience using Firebase Authentication and custom JWT.
+- **Results Export**  
+  Download your interactive study results as dynamic PDFs right from your browser, making revisions significantly easier.
+
+- **Robust Authentication & Security**  
+  Secure access crafted for a seamless user experience using Firebase Authentication paired with Custom Node JWT auth.
 
 ---
 
@@ -25,22 +31,23 @@
 AskMyNotes leverages a modern, event-driven infrastructure to process, embed, and query your notes seamlessly.
 
 ### **Frontend**
-- **Framework**: [Next.js](https://nextjs.org/) (App Router, Turbopack)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack), React 19
 - **UI & Styling**: [Tailwind CSS v4](https://tailwindcss.com/), Radix UI, Shadcn UI
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Animations & Visuals**: [Framer Motion](https://www.framer.com/motion/) with beautiful dynamic mesh backgrounds
 - **Icons**: Lucide React
+- **Client-Side Export**: `jspdf`, `html-to-image`
 
 ### **Backend & APIs**
-- **API Setup**: Next.js App Router API Routes (`/api/subjects`, `/api/upload-notes`, `/api/generate-questions`, `/api/save-answers`, etc.) proxying secure connections.
-- **AI Orchestration**: **[n8n](https://n8n.io/)** (Webhooks for file upload & RAG orchestration).
+- **API Setup**: Next.js App Router API Routes (`/api/subjects`, `/api/upload-notes`, `/api/generate-questions`, `/api/save-answers`, `/api/history`, etc.)
+- **AI Orchestration**: **[n8n](https://n8n.io/)** (Webhooks mapping endpoints for file upload, RAG orchestration, study generation, and general chat over Railway).
 - **RAG Pipeline**:
-  - *Data Loaders & Recursion Text Splitters*
-  - *Embeddings via LLM (Mistral/OpenAI)*
+  - *Data Loaders & Recursive Text Splitters*
+  - *Embeddings via LLM models*
 
 ### **Database & Storage**
-- **Main DB & Vector Store**: **[Supabase](https://supabase.com/)** (PostgreSQL with `pgvector` for efficient similarity search).
-- **File Uploads**: **[ImageKit](https://imagekit.io/)** (Note handling & URLs).
-- **Authentication**: **Firebase** & **Custom Node JWT auth**.
+- **Main DB & Vector Store**: **[Supabase](https://supabase.com/)** (PostgreSQL with `pgvector` for efficient similarity search and user history storage).
+- **File Uploads**: **[ImageKit](https://imagekit.io/)** (PDF handling & structured URLs).
+- **Authentication**: **Firebase** & **Firebase Admin** combined with `bcryptjs` and `jsonwebtoken`.
 
 ---
 
@@ -48,7 +55,7 @@ AskMyNotes leverages a modern, event-driven infrastructure to process, embed, an
 
 ### Prerequisites
 - Node.js (v20+)
-- Local or Cloud instances of Supabase, Firebase, ImageKit, and n8n
+- Local or Cloud instances of Supabase, Firebase, ImageKit, and an active n8n web hook.
 
 ### Installation
 

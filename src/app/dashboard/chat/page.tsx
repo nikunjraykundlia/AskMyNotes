@@ -246,8 +246,7 @@ export default function ChatPage() {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={hasFiles ? "Message Assistant..." : "Upload files to start chatting..."}
-                            disabled={!hasFiles}
-                            className="min-h-[56px] max-h-48 resize-none border-0 shadow-none focus-visible:ring-0 pl-4 py-4 pr-16 w-full bg-transparent scrollbar-hide text-base disabled:opacity-50 disabled:cursor-not-allowed flex-1"
+                            disabled={isInputDisabled} className="min-h-[56px] max-h-48 resize-none border-0 shadow-none focus-visible:ring-0 pl-4 py-4 pr-16 w-full bg-transparent scrollbar-hide text-base disabled:opacity-50 disabled:cursor-not-allowed flex-1"
                             rows={1}
                         />
                         <div className="absolute right-2 bottom-2 max-h-full flex items-end">
