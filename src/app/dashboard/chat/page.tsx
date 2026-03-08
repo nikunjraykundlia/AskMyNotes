@@ -136,10 +136,10 @@ export default function ChatPage() {
     };
 
     return (
-        <div className="absolute inset-0 flex flex-col bg-background z-10">
+        <div className="absolute inset-0 flex flex-col bg-background z-10 overflow-y-auto">
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto w-full flex flex-col">
-                <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col pt-8 px-4 md:px-6 pb-2">
+            <div className="flex-1 w-full flex flex-col">
+                <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col pt-8 px-4 md:px-6 pb-40">
                     {messages.length === 0 ? (
                         <div className="flex-1 flex flex-col items-center justify-center text-center opacity-70 fade-in zoom-in duration-500">
                             <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
@@ -235,7 +235,7 @@ export default function ChatPage() {
             </div>
 
             {/* Input Area */}
-            <div className="flex-none w-full p-4 pb-6 md:p-6 md:pb-8 bg-gradient-to-t from-background via-background to-transparent relative">
+            <div className="flex-none sticky bottom-0 w-full p-4 pb-6 md:p-6 md:pb-8 bg-gradient-to-t from-background via-background to-transparent z-20">
                 <div className="max-w-4xl mx-auto w-full relative">
                     <form
                         onSubmit={handleSubmit}
