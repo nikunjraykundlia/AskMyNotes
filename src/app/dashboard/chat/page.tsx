@@ -7,6 +7,11 @@ import { Send, Bot, User, Loader2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+// Add these imports at the top
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css"; // or any theme you prefer
 
 interface ChatMessage {
     id: string;
@@ -194,8 +199,16 @@ export default function ChatPage() {
                                                 </span>
                                             )}
                                         </p>
-                                        <div className="text-[15px] leading-7 whitespace-pre-wrap text-foreground/90 break-words prose dark:prose-invert prose-p:leading-relaxed prose-pre:bg-muted prose-pre:border prose-pre:border-border max-w-none">
+                                        {/* <div className="text-[15px] leading-7 whitespace-pre-wrap text-foreground/90 break-words prose dark:prose-invert prose-p:leading-relaxed prose-pre:bg-muted prose-pre:border prose-pre:border-border max-w-none">
                                             {message.parsed ? message.parsed.answer : message.content}
+                                        </div> */}
+                                        <div className="text-[15px] leading-7 text-foreground/90 prose dark:prose-invert prose-p:leading-relaxed prose-pre:bg-muted prose-pre:border prose-pre:border-border max-w-none prose-code:text-sm prose-pre:rounded-xl prose-pre:overflow-x-auto">
+                                            <ReactMarkdown
+                                                remarkPlugins={[remarkGfm]}
+                                                rehypePlugins={[rehypeHighlight]}
+                                            >
+                                                {message.parsed ? message.parsed.answer : message.content}
+                                            </ReactMarkdown>
                                         </div>
                                         {message.role === "assistant" && message.parsed?.evidence && (
                                             <div className="mt-4 p-4 rounded-xl bg-secondary/50 border border-border/50 text-sm">
@@ -204,7 +217,7 @@ export default function ChatPage() {
                                                     Support Evidence
                                                 </p>
                                                 <p className="text-muted-foreground text-sm leading-relaxed italic border-l-2 border-primary/30 pl-3">
-                                                    "{message.parsed.evidence}"
+                                                    &quot;{message.parsed.evidence}&quot;
                                                 </p>
                                             </div>
                                         )}
@@ -266,7 +279,7 @@ export default function ChatPage() {
                         </div>
                     </form>
                     <p className="text-[11px] text-center text-muted-foreground mt-3">
-                        AI can make mistakes. We're making this better every day.
+                        AI can make mistakes. We&apos;re making this better every day.
                     </p>
                 </div>
             </div>
