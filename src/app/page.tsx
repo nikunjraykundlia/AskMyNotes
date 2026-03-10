@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, BrainCircuit, FileText, CheckCircle, GraduationCap, Sparkles } from "lucide-react";
+import { useTheme } from "next-themes";
 import { GradientButton } from "@/components/shared/GradientButton";
 import { AnimatedMeshBackground } from "@/components/shared/AnimatedMeshBackground";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { GridScan } from '@/components/GridScan';
 
 const features = [
   {
@@ -26,6 +28,9 @@ const features = [
 ];
 
 export default function LandingPage() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,6 +49,27 @@ export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
       <AnimatedMeshBackground />
+
+      {/* GridScan — dark mode only */}
+      {isDark && (
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '100vh', zIndex: 0, pointerEvents: 'none' }}
+          className="[mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]
+                      [-webkit-mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"
+        >
+          <GridScan
+            sensitivity={0.55}
+            lineThickness={1}
+            linesColor="#75c7bf"
+            gridScale={0.1}
+            scanColor="#FF9FFC"
+            scanOpacity={0.4}
+            enablePost
+            bloomIntensity={0.6}
+            chromaticAberration={0.002}
+            noiseIntensity={0.01}
+          />
+        </div>
+      )}
 
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-8 pt-12 md:px-16 max-w-[1400px] mx-auto">
@@ -76,8 +102,6 @@ export default function LandingPage() {
           animate="visible"
           className="text-center max-w-4xl mx-auto mt-24 md:mt-32"
         >
-
-
           <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-7xl font-heading font-bold tracking-tight mb-6 leading-tight"
